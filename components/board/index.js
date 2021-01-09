@@ -21,7 +21,7 @@ export default function Board({ cards, flipped, handleClick }) {
 }
 
 Board.propTypes = {
-    cards: PropTypes.arrayOf(PropTypes.shape({})),
+    cards: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
     flipped: PropTypes.arrayOf(PropTypes.number).isRequired,
     handleClick: PropTypes.func.isRequired,
 
