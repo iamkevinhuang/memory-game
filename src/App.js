@@ -1,9 +1,15 @@
-import React, {useState} from 'react';
-import Card from './components/card';
+import React, {useState, useEffect} from 'react';
+import Board from './components/board';
 import './App.css';
+import initializeDeck from './deck';
 
 function App() {
+  const [cards, setCards] = useState([]);
   const [flipped, setFlipped] = useState([]);
+
+  useEffect(() => {
+    setCards(initializeDeck());
+  },[])
 
   const handleClick = (id) => {
     return setFlipped([...flipped, id]);
@@ -13,14 +19,10 @@ function App() {
     <div className="App">
       <h1>Memory Game</h1>
       <h2>Bisakah kamu mengingat dimana letak kartu tersebut ?</h2>
-      <Card 
-        id={1}
-        width={100}
-        height={100}
-        back={'/img/deck_belakang.png'}
-        front={'/img/flashdrive.png'}
-        flipped={flipped.includes(1)}
-        handleClick={() => handleClick(1)}
+      <Board 
+        cards={cards}
+        flipped={flipped}
+        handleClick={handleClick}
       />
     </div>
   );

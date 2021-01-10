@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './styles.css';
 
-export default function Card({handleClick, id, flipped, back, front, height, width}){
+export default function Card({handleClick, id, type, flipped, height, width}){
     return (
         <div 
             className={`flip-container ${flipped ? 'flipped' : ''}`}
@@ -10,7 +10,7 @@ export default function Card({handleClick, id, flipped, back, front, height, wid
             onClick={() => handleClick(id)}
         >
             <div className="flipper">
-                <img style={{height, width}} className={flipped ? 'front' : 'back'} src={flipped ? front : back}/>
+                <img style={{height, width}} className={flipped ? 'front' : 'back'} src={flipped ? `/img/${type}.png` : `/img/deck_belakang.png`}/>
             </div>
 
         </div>
@@ -21,8 +21,7 @@ Card.propTypes = {
     handleClick: PropTypes.func.isRequired,
     id: PropTypes.number.isRequired,
     flipped: PropTypes.bool.isRequired,
-    back: PropTypes.string.isRequired,
-    front: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
     height: PropTypes.number.isRequired,
     width: PropTypes.number.isRequired,
 }
