@@ -7,14 +7,16 @@ export default function Card({
   id,
   type,
   flipped,
+  solved,
   height,
-  width
+  width,
+  disabled,
 }) {
   return (
     <div
-      className={`flip-container ${flipped ? 'flipped' : ''}`}
+      className={`flip-container ${flipped || solved ? 'flipped' : ''}`}
       style={{ width, height }}
-      onClick={() => handleClick(id)}
+      onClick={() => disabled ? null : handleClick(id)}
     >
       <div className="flipper">
         <div className="side card-back">
@@ -33,7 +35,9 @@ Card.propTypes = {
   handleClick: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   flipped: PropTypes.bool.isRequired,
+  solved: PropTypes.bool.isRequired,
   type: PropTypes.string.isRequired,
   height: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired
+  width: PropTypes.number.isRequired,
+  disabled: PropTypes.bool.isRequired,
 };
